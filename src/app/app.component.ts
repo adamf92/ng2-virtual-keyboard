@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { VirtualKeyboardOutService } from './services/virtual-keyboard-out.service';
+import { EventListener } from '@angular/core/src/debug/debug_node';
 
 @Component({
   selector: 'af-vk-root',
@@ -6,4 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(
+    public vkService: VirtualKeyboardOutService
+  ) {
+  }
+
+  @HostListener('document: keypress', ['$event']) listener(event: KeyboardEvent) {
+    console.log(event);
+  }
+
+  public clickMe(key: string) {
+    this.vkService.emitKeypress(key);
+  }
+
 }

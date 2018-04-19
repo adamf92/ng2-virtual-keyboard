@@ -1,0 +1,9 @@
+<div class="line row container">
+    <ng-container *ngFor="let key of line.keys">
+        <ng-container *ngIf="key.special"></ng-container>
+        <ng-container *ngIf="key.lowerCase">
+            <af-vk-letter-key [key]="key.lowerCase"></af-vk-letter-key>
+        </ng-container>
+        <ng-container *ngIf="key.number"></ng-container>
+    </ng-container>
+</div>
