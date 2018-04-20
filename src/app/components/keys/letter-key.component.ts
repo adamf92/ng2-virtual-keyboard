@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AfVkAbstractKeyComponent } from './abstract-key.component';
-import { AfVkLetterKeyEvent } from '../../models/letter-key.model';
+import { AfVkKeyEvent } from '../../models/key-event.model';
+import { AfVkSettingsService } from '../../services/settings.service';
 
 @Component({
     selector: 'af-vk-letter-key',
@@ -10,11 +11,15 @@ import { AfVkLetterKeyEvent } from '../../models/letter-key.model';
 
 export class AfVkLetterKeyComponent extends AfVkAbstractKeyComponent {
 
-    @Input('key') public key: string;
+    constructor(
+        settings: AfVkSettingsService
+      ) {
+        super(settings);
+    }
 
     protected _keyboardEvent() {
          if (this.key) {
-             return AfVkLetterKeyEvent.keyboardEvent(this.key);
+             return AfVkKeyEvent.keyboardEvent(this.key);
          }
      }
 

@@ -61,7 +61,7 @@ export const QWERTY_KEYBOARD: IQwertyKeyboard = {
     middleLine: {
         line: 'middleLine',
         keys: [
-            { special: 'capsLock' },
+            { special: 'caps-lock' },
             { lowerCase: 'a', upperCase: 'A', alter: 'ą', alterUpper : 'Ą' },
             { lowerCase: 's', upperCase: 'S', alter: 'ś', alterUpper: 'Ś' },
             { lowerCase: 'd', upperCase: 'D' },
@@ -79,7 +79,7 @@ export const QWERTY_KEYBOARD: IQwertyKeyboard = {
     bottomLine: {
         line: 'bottomLine',
         keys: [
-            { special: 'shift' },
+            { special: 'l-shift' },
             { lowerCase: 'z', upperCase: 'Z', alter: 'ż', alterUpper: 'Ż' },
             { lowerCase: 'x', upperCase: 'x', alter: 'ź', alterUpper: 'Ź' },
             { lowerCase: 'c', upperCase: 'C', alter: 'ć', alterUpper: 'Ć' },
@@ -90,17 +90,17 @@ export const QWERTY_KEYBOARD: IQwertyKeyboard = {
             { lowerCase: ',', upperCase: '<' },
             { lowerCase: '.', upperCase: '>' },
             { lowerCase: '/', upperCase: '?' },
-            { special: 'shift' },
+            { special: 'r-shift' },
         ]
     },
     actionLine: {
         line: 'actionLine',
         keys: [
-            { special: 'ctrl' },
-            { special: 'alt' },
+            { special: 'l-ctrl' },
+            { special: 'l-alt' },
             { special: 'space' },
-            { special: 'alt' },
-            { special: 'ctrl' },
+            { special: 'r-alt' },
+            { special: 'r-ctrl' },
         ]
     }
 };

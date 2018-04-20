@@ -1,18 +1,26 @@
 import { VirtualKeyboardOutService } from '../../services/virtual-keyboard-out.service';
-import { HostListener } from '@angular/core';
+import { HostListener, Input } from '@angular/core';
+import { AfVkSettingsService, ThemeColors } from '../../services/settings.service';
 
 export abstract class AfVkAbstractKeyComponent {
 
-    public abstract key: string;
+    @Input('key') key: string;
+
+    public themeColor: ThemeColors;
 
     constructor(
-    ) { }
-
-    @HostListener('click') onClick() {
-        let event: KeyboardEvent;
-        event = this._keyboardEvent();
-        document.dispatchEvent(event);
+        private _settings: AfVkSettingsService
+    ) {
+        this.themeColor = _settings.getThemeColor();
     }
 
-    protected abstract _keyboardEvent(): KeyboardEvent;
+    @HostListener('click') onClick() {
+        let event: Event;
+        event = this._keyboardEvent();
+        if (event instanceof KeyboardEvent) {
+            document.dispatchEvent(event);
+        }
+    }
+
+    protected abstract _keyboardEvent(): Event;
 }

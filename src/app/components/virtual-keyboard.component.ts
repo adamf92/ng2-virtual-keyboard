@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { IQwertyKeyboard, QWERTY_KEYBOARD } from '../models/qwerty-keyboard.model';
+import { AfVkSettingsService, ThemeColors } from '../services/settings.service';
 
 @Component({
     selector: 'af-virtual-keyboard',
@@ -9,9 +10,14 @@ import { IQwertyKeyboard, QWERTY_KEYBOARD } from '../models/qwerty-keyboard.mode
 
 export class AfVirtualKeyboardComponent implements AfterViewInit {
 
+    public themeColor: ThemeColors;
+
     protected _qwertyKeyboard: IQwertyKeyboard;
 
-    constructor() {
+    constructor(
+        private _settings: AfVkSettingsService
+    ) {
+        this.themeColor = _settings.getThemeColor();
         this._qwertyKeyboard = this._qwertyKeyboard ? this._qwertyKeyboard : QWERTY_KEYBOARD;
     }
 

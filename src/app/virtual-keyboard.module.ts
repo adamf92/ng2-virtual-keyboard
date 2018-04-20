@@ -4,6 +4,7 @@ import { VirtualKeyboardOutService } from './services/virtual-keyboard-out.servi
 import { AfVkKeysModule } from './components/keys/keys.module';
 import { AfVkComponentModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
+import { AfVkSettingsService } from './services/settings.service';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     declarations: [],
     providers: [
         VirtualKeyboardInService,
-        VirtualKeyboardOutService
+        VirtualKeyboardOutService,
+        AfVkSettingsService
     ],
 })
 export class AfVirtualKeyboardModule { }

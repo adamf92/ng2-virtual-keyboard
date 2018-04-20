@@ -1,8 +1,36 @@
 .vk.virtual-keyboard.container {
-    height: 200px;
+    height: 360px;
     width: 100%;
     position: fixed;
+    display: flex;
     bottom: 30px;
-    background-color: #dadada;
+    
     box-shadow: 0 0 15px #464646;
+    align-items: center;
+
+    &.blue {
+        background-color: #a4b1c3;
+    }
+
+    &.red {
+        background-color: #d2acac;
+    }
+
+    &.green {
+        background-color: #bfe0b1;
+    }
+
+    &.black {
+        background-color: #848484;
+    }
+
+    &.orange {
+        background-color: #f7ef8a;
+    }
+
+    .vk.virtual-keyboard.inner {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
 }

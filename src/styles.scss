@@ -1,2 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/reset-css/reset.scss';
+
+// For all keys
+
+.key {
+
+    height: 60px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+    line-height: 60px;
+
+    cursor: pointer;
+
+
+    border: none;
+    border-radius: 5px;
+}
+
+.key.blue {
+    background-color: #1b398c;
+
+    &:hover {
+        background-color: #3659b8;
+        box-shadow: 0 0 10px #d37b58;
+    }
+}
+
+.key.red {
+    background-color: #8c1b1b;
+
+    &:hover {
+        background-color: #c03939;
+        box-shadow: 0 0 10px #73b9e2;
+    }
+}
+
+.key.green {
+    background-color: #327d13;
+
+    &:hover {
+        background-color: #52a52f;
+        box-shadow: 0 0 10px #e28073;
+
+    }
+}
+
+.key.black {
+    background-color: #000;
+
+    &:hover {
+        background-color: #464646;
+        box-shadow: 0 0 10px #e29273;
+    }
+}
+
+.key.orange {
+    background-color: #b7722b;
+
+    &:hover {
+        background-color: #885017;
+        box-shadow: 0 0 10px #83afff;
+    }
+}
