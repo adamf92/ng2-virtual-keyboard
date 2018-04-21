@@ -16,9 +16,9 @@ I have idea to make virtual-keyboard which will be emitting imitations of real k
 # Usage
 
 1. Import AfVirtualKeyboardModule
-2. To set theme colors inject AfVirtualKeyboard service to component
+2. To set theme colors inject AfVirtualKeyboardService to component
 and set one of colors: 'blue', 'red', 'green', 'black', 'orange' \
-with AfVirtualKeyboard.setThemeColor(color) method.
+with AfVirtualKeyboardService.setThemeColor(color) method.
 3. Attach AfVkToggleDirective ([AfVkToggle]) to any element you want \
 ex. `<button afVkToggle>Toggle Keyboard</button>`
 4. Comming soon!
