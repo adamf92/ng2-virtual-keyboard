@@ -16,7 +16,7 @@ import { AfVkKeysModule } from './keys/keys.module';
     declarations: [
         AfVirtualKeyboardComponent,
         AfVkLineComponent
-    ],
+],
     providers: [],
 })
 export class AfVkComponentModule { }

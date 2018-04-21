@@ -1,4 +1,5 @@
-<div class="vk virtual-keyboard container {{ themeColor }}">
+<div *ngIf="getOpenState()" class="vk virtual-keyboard container {{ themeColor }}"
+[ngClass]="{'in': !fadeOut(), 'out': fadeOut()}">
         <div class="vk virtual-keyboard inner">
                 <af-vk-line [line]="getQwertyKeyboard().numberLine"></af-vk-line>
                 <af-vk-line [line]="getQwertyKeyboard().topLine"></af-vk-line>
@@ -6,5 +7,4 @@
                 <af-vk-line [line]="getQwertyKeyboard().bottomLine"></af-vk-line>
                 <af-vk-line [line]="getQwertyKeyboard().actionLine"></af-vk-line>
         </div>
-
 </div>

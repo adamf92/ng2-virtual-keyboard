@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { VirtualKeyboardOutService } from './services/virtual-keyboard-out.service';
 import { EventListener } from '@angular/core/src/debug/debug_node';
-import { AfVkSettingsService } from './services/settings.service';
+import { AfVirtualKeyboardService } from './services/virtual-keyboard.service';
 
 @Component({
   selector: 'af-vk-root',
@@ -11,18 +10,13 @@ import { AfVkSettingsService } from './services/settings.service';
 export class AppComponent {
 
   constructor(
-    public vkService: VirtualKeyboardOutService,
-    private _settingsService: AfVkSettingsService
+    private _settingsService: AfVirtualKeyboardService
   ) {
-    _settingsService.setThemeColor('blue');
+    _settingsService.setThemeColor('green');
   }
 
   @HostListener('document: keypress', ['$event']) listener(event: KeyboardEvent) {
     console.log(event);
-  }
-
-  public clickMe(key: string) {
-    this.vkService.emitKeypress(key);
   }
 
 }

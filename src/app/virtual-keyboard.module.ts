@@ -1,27 +1,30 @@
 import { NgModule } from '@angular/core';
-import { VirtualKeyboardInService } from './services/virtual-keyboard-in.service';
-import { VirtualKeyboardOutService } from './services/virtual-keyboard-out.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AfVkKeysModule } from './components/keys/keys.module';
 import { AfVkComponentModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
-import { AfVkSettingsService } from './services/settings.service';
+import { AfVirtualKeyboardService } from './services/virtual-keyboard.service';
+import { AfVkToggleDirective } from './directives/toggle.directive';
 
 
 @NgModule({
     imports: [
         AfVkComponentModule,
         AfVkKeysModule,
+        BrowserAnimationsModule,
         CommonModule
     ],
     exports: [
         AfVkComponentModule,
-        AfVkKeysModule
+        AfVkKeysModule,
+        AfVkToggleDirective
     ],
-    declarations: [],
+    declarations: [
+        AfVkToggleDirective
+    ],
     providers: [
-        VirtualKeyboardInService,
-        VirtualKeyboardOutService,
-        AfVkSettingsService
+        AfVirtualKeyboardService
     ],
 })
 export class AfVirtualKeyboardModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AfVkAbstractKeyComponent } from '../abstract-key.component';
 import { AfVkKeyEvent } from '../../../models/key-event.model';
-import { AfVkSettingsService } from '../../../services/settings.service';
+import { AfVirtualKeyboardService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'af-vk-special-key',
@@ -12,7 +12,7 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
   public keyName = '';
 
   constructor(
-    settings: AfVkSettingsService
+    settings: AfVirtualKeyboardService
   ) {
     super(settings);
   }

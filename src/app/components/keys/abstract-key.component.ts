@@ -1,6 +1,5 @@
-import { VirtualKeyboardOutService } from '../../services/virtual-keyboard-out.service';
 import { HostListener, Input } from '@angular/core';
-import { AfVkSettingsService, ThemeColors } from '../../services/settings.service';
+import { AfVirtualKeyboardService, ThemeColors } from '../../services/virtual-keyboard.service';
 
 export abstract class AfVkAbstractKeyComponent {
 
@@ -9,7 +8,7 @@ export abstract class AfVkAbstractKeyComponent {
     public themeColor: ThemeColors;
 
     constructor(
-        private _settings: AfVkSettingsService
+        private _settings: AfVirtualKeyboardService
     ) {
         this.themeColor = _settings.getThemeColor();
     }
