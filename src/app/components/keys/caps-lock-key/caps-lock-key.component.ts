@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-caps-lock-key',
-  templateUrl: './caps-lock-key.component.html',
-  styleUrls: ['./caps-lock-key.component.scss']
+  templateUrl: './caps-lock-key.component.html'
 })
 export class AfVkCapsLockKeyComponent extends AfVkAbstractKeyComponent {
 

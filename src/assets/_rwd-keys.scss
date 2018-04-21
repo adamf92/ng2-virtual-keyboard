@@ -1,0 +1,207 @@
+ // Resposive 
+ @include media-breakpoint-up(xs) {
+    .vk.virtual-keyboard.container {
+        height: 145px;
+    }
+
+    .line.row.container {
+        height: 27px;
+    }
+
+    .key {
+        margin-bottom: 2px !important;
+        margin-right: 2px !important;
+        height: 25px;
+        line-height: 25px;
+
+        font-size: 8px;
+        &.backspace-key {
+            width: 51px;
+        }
+    
+        &.caps-lock-key {
+            width: 33px;
+            &.normal {
+                display: none;
+            }
+            &.small {
+                display: block;
+            }
+        }
+    
+        &.enter-key {
+            width: 37px;
+        }
+    
+        &.shift-key {
+            width: 46px;
+        }
+    
+        &.space-key {
+            width: 195px;
+        }
+    
+        &.small-special-key {
+            width: 28px;
+        }
+
+        &.letter-key {
+            width: 20px;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .vk.virtual-keyboard.container {
+        height: 190px;
+    }
+
+    .line.row.container {
+        height: 35px;
+    }
+
+    .key {
+        font-size: 13px;
+        margin-bottom: 5px !important;
+        margin-right: 5px !important;
+        height: 30px;
+        line-height: 30px;
+        &.backspace-key {
+            width: 85px;
+        }
+    
+        &.caps-lock-key {
+            width: 55px;
+            &.normal {
+                display: none;
+            }
+            &.small {
+                display: block;
+            }
+        }
+    
+        &.enter-key {
+            width: 65px;
+        }
+    
+        &.shift-key {
+            width: 80px;
+        }
+    
+        &.space-key {
+            width: 365px;
+        }
+    
+        &.small-special-key {
+            width: 45px;
+        }
+
+        &.letter-key {
+            width: 35px;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .vk.virtual-keyboard.container {
+        height: 220px;
+    }
+
+    .line.row.container {
+        height: 40px;
+    }
+
+    .key {
+        font-size: 15px;
+        margin-bottom: 5px !important;
+        margin-right: 5px !important;
+        height: 35px;
+        line-height: 35px;
+        &.backspace-key {
+            width: 115px;
+        }
+    
+        &.caps-lock-key {
+            width: 70px;
+            font-size: 13px !important;
+            &.normal {
+                display: block;
+            }
+            &.small {
+                display: none;
+            }
+        }
+    
+        &.enter-key {
+            width: 90px;
+        }
+    
+        &.shift-key {
+            width: 105px;
+        }
+    
+        &.space-key {
+            width: 435px;
+        }
+    
+        &.small-special-key {
+            width: 65px;
+        }
+
+        &.letter-key {
+            width: 45px;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+
+    .vk.virtual-keyboard.container {
+        height: 270px;
+    }
+
+    .line.row.container {
+        height: 50px;
+    }
+
+    .key {
+        font-size: 15px;
+        margin-bottom: 5px !important;
+        margin-right: 5px !important;
+        height: 45px;
+        line-height: 45px;
+        &.backspace-key {
+            width: 145px;
+        }
+    
+        &.caps-lock-key {
+            width: 90px;
+            &.normal {
+                display: block;
+            }
+            &.small {
+                display: none;
+            }
+        }
+    
+        &.enter-key {
+            width: 115px;
+        }
+    
+        &.shift-key {
+            width: 135px;
+        }
+    
+        &.space-key {
+            width: 585px;
+        }
+    
+        &.small-special-key {
+            width: 80px;
+        }
+
+        &.letter-key {
+            width: 60px;
+        }
+    }
+}

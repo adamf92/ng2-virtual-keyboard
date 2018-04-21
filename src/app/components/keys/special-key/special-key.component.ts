@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-special-key',
-  templateUrl: './special-key.component.html',
-  styleUrls: ['./special-key.component.scss']
+  templateUrl: './special-key.component.html'
 })
 export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements OnInit {
 

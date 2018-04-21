@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-enter-key',
-  templateUrl: './enter-key.component.html',
-  styleUrls: ['./enter-key.component.scss']
+  templateUrl: './enter-key.component.html'
 })
 export class AfVkEnterKeyComponent extends AfVkAbstractKeyComponent {
 

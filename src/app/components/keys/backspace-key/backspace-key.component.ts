@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-backspace-key',
-  templateUrl: './backspace-key.component.html',
-  styleUrls: ['./backspace-key.component.scss']
+  templateUrl: './backspace-key.component.html'
 })
 export class AfVkBackspaceKeyComponent extends AfVkAbstractKeyComponent {
 

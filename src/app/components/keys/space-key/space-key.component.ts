@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-space-key',
-  templateUrl: './space-key.component.html',
-  styleUrls: ['./space-key.component.scss']
+  templateUrl: './space-key.component.html'
 })
 export class AfVkSpaceKeyComponent extends AfVkAbstractKeyComponent {
 

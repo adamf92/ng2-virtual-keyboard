@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'af-vk-shift-key',
-  templateUrl: './shift-key.component.html',
-  styleUrls: ['./shift-key.component.scss']
+  templateUrl: './shift-key.component.html'
 })
 export class AfVkShiftKeyComponent extends AfVkAbstractKeyComponent {
 

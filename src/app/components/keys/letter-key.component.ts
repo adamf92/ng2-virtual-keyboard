@@ -5,8 +5,7 @@ import { AfVkSettingsService } from '../../services/settings.service';
 
 @Component({
     selector: 'af-vk-letter-key',
-    templateUrl: 'letter-key.component.html',
-    styleUrls: ['letter-key.component.scss']
+    templateUrl: 'letter-key.component.html'
 })
 
 export class AfVkLetterKeyComponent extends AfVkAbstractKeyComponent {
