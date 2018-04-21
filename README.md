@@ -12,6 +12,8 @@ I have idea to make virtual-keyboard which will be emitting imitations of real k
 ##### Eric Meyer's Reset
 [http://meyerweb.com/eric/tools/css/reset/](http://meyerweb.com/eric/tools/css/reset/) \
 [https://github.com/ianrose/reset-scss](https://github.com/ianrose/reset-scss)
+##### Bootstrap breakpoints mixins
+[http://getbootstrap.com](http://getbootstrap.com)
 
 # Usage
 
