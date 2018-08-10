@@ -15,4 +15,8 @@ export class AfVkCapsLockKeyComponent extends AfVkAbstractKeyComponent {
     super(settings);
   }
 
+  protected _keypress() {
+    this._service.shiftPress();
+  }
+
 }

@@ -31,14 +31,22 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
         this.keyName = 'tab';
         break;
     }
+    this.viewKey = this.keyName;
   }
 
   protected _keypress() {
-    if (this.keyName === 'alt') {
-      this._service.altPress();
-    } else {
-      return;
+    switch (this.keyName) {
+      case 'alt':
+        this._service.altPress();
+        break;
+      case 'tab':
+        super._keypress();
+        break;
+      case 'ctrl': {
+        this._service.ctrlPress();
+      }
     }
+
   }
 
 }

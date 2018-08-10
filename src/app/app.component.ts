@@ -13,5 +13,6 @@ export class AppComponent {
     private _service: AfVirtualKeyboardService
   ) {
     _service.setThemeColor('green');
+    _service.setEnterAction(() => _service.closeKeyboard());
   }
 }

@@ -19,6 +19,9 @@ export class AfVirtualKeyboardService {
 
     private _position: number = 0;
 
+    private _enterAction: () => any = () => null;
+    private _ctrlAction: () => any = () => null;
+
     constructor() {
         this._themeColor = 'blue';
         this._opened = false;
@@ -63,6 +66,22 @@ export class AfVirtualKeyboardService {
                 this.alt$.emit(false);
             }
         }
+    }
+
+    public enterPress() {
+        this._enterAction();
+    }
+
+    public ctrlPress() {
+        this._ctrlAction();
+    }
+
+    public setEnterAction(action: () => any) {
+        this._enterAction = action;
+    }
+
+    public setCtrlAction(action: () => any) {
+        this._ctrlAction = action;
     }
 
     public setPosition(position: number) {
