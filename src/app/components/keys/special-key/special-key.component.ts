@@ -17,10 +17,6 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
     super(settings);
   }
 
-  protected _keyboardEvent() {
-    return AfVkKeyEvent.shiftEvent();
-  }
-
   ngOnInit() {
     switch (this.key) {
       case 'l-alt':
@@ -34,6 +30,14 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
       case 'tab':
         this.keyName = 'tab';
         break;
+    }
+  }
+
+  protected _keypress() {
+    if (this.keyName === 'alt') {
+      this._service.altPress();
+    } else {
+      return;
     }
   }
 

@@ -16,8 +16,8 @@ export class AfVkShiftKeyComponent extends AfVkAbstractKeyComponent {
     super(settings);
   }
 
-    protected _keyboardEvent() {
-      return AfVkKeyEvent.shiftEvent();
-    }
+  protected _keypress() {
+    this._service.shiftPress();
+  }
 
 }

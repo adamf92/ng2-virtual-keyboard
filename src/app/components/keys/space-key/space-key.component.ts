@@ -16,9 +16,4 @@ export class AfVkSpaceKeyComponent extends AfVkAbstractKeyComponent {
     super(settings);
   }
 
-  protected _keyboardEvent() {
-    return AfVkKeyEvent.shiftEvent();
-  }
-
-
 }

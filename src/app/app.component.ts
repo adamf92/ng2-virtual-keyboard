@@ -10,13 +10,8 @@ import { AfVirtualKeyboardService } from './services/virtual-keyboard.service';
 export class AppComponent {
 
   constructor(
-    private _settingsService: AfVirtualKeyboardService
+    private _service: AfVirtualKeyboardService
   ) {
-    _settingsService.setThemeColor('green');
+    _service.setThemeColor('green');
   }
-
-  @HostListener('document: keypress', ['$event']) listener(event: KeyboardEvent) {
-    console.log(event);
-  }
-
 }

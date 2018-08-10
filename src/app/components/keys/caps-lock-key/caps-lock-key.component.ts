@@ -14,8 +14,5 @@ export class AfVkCapsLockKeyComponent extends AfVkAbstractKeyComponent {
   ) {
     super(settings);
   }
-  protected _keyboardEvent() {
-    return AfVkKeyEvent.shiftEvent();
-  }
 
 }

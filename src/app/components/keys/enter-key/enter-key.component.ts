@@ -15,8 +15,4 @@ export class AfVkEnterKeyComponent extends AfVkAbstractKeyComponent {
     super(settings);
   }
 
-  protected _keyboardEvent() {
-    return AfVkKeyEvent.shiftEvent();
-  }
-
 }

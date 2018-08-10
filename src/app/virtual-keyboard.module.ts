@@ -6,6 +6,7 @@ import { AfVkComponentModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { AfVirtualKeyboardService } from './services/virtual-keyboard.service';
 import { AfVkToggleDirective } from './directives/toggle.directive';
+import { AfVkInputDirective } from './directives/input.directive';
 
 
 @NgModule({
@@ -18,10 +19,12 @@ import { AfVkToggleDirective } from './directives/toggle.directive';
     exports: [
         AfVkComponentModule,
         AfVkKeysModule,
-        AfVkToggleDirective
+        AfVkToggleDirective,
+        AfVkInputDirective
     ],
     declarations: [
-        AfVkToggleDirective
+        AfVkToggleDirective,
+        AfVkInputDirective
     ],
     providers: [
         AfVirtualKeyboardService
