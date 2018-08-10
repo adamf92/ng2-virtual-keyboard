@@ -12,13 +12,15 @@ I have idea to make virtual-keyboard which will be emitting imitations of real k
 ##### Eric Meyer's Reset
 [http://meyerweb.com/eric/tools/css/reset/](http://meyerweb.com/eric/tools/css/reset/) \
 [https://github.com/ianrose/reset-scss](https://github.com/ianrose/reset-scss)
+##### Bootstrap breakpoints mixins
+[http://getbootstrap.com](http://getbootstrap.com)
 
 # Usage
 
 1. Import AfVirtualKeyboardModule
-2. To set theme colors inject AfVirtualKeyboard service to component
+2. To set theme colors inject AfVirtualKeyboardService to component
 and set one of colors: 'blue', 'red', 'green', 'black', 'orange' \
-with AfVirtualKeyboard.setThemeColor(color) method.
+with AfVirtualKeyboardService.setThemeColor(color) method.
 3. Attach AfVkToggleDirective ([AfVkToggle]) to any element you want \
 ex. `<button afVkToggle>Toggle Keyboard</button>`
 4. Comming soon!
