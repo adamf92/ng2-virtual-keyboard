@@ -1,0 +1,14 @@
+::ng-deep af-virtual-keyboard {
+    .vk.virtual-keyboard.container.custom {
+        background-color: #ad6200;
+
+        .key.custom {
+            background-color: #1b398c;
+        
+            &:hover {
+                background-color: #472e00;
+                box-shadow: 0 0 10px #fff1eb;
+            }
+        }
+    }
+}

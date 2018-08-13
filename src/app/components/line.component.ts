@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IQwertyKeysLine } from '../models/qwerty-keyboard.model';
 
 @Component({
@@ -7,13 +7,9 @@ import { IQwertyKeysLine } from '../models/qwerty-keyboard.model';
     styleUrls: ['line.component.scss']
 })
 
-export class AfVkLineComponent implements AfterViewInit {
+export class AfVkLineComponent {
 
     @Input('line') public line: IQwertyKeysLine;
-
-    constructor() { }
-
-    ngAfterViewInit() { }
 
     public isTabKey(key: string): boolean {
         return key === 'tab';

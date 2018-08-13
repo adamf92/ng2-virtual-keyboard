@@ -11,11 +11,11 @@ export class AfVkToggleDirective {
     }
 
     @HostListener('click') onclick() {
-        this._service.toggleKeyboard();
+        this._toggleKeyboard();
     }
 
-    @HostListener('document:keydown', ['$event']) keypress(event) {
-        if (event.altKey && event.code === 'KeyK') {
+    private _toggleKeyboard() {
+        if (!this._service.isAnimating()) {
             this._service.toggleKeyboard();
         }
     }

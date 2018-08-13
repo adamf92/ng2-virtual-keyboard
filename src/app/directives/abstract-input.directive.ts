@@ -1,6 +1,6 @@
-import { OnDestroy, ElementRef, HostListener } from '@angular/core';
+import { OnDestroy, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { AfVirtualKeyboardService } from '../services/virtual-keyboard.service';
-import { AfVkKeyEvent } from '../models/key-event.model';
+import { AfVkKeyEvent, AfVkEnterEvent } from '../models/key-event.model';
 import { filter } from 'rxjs/operators';
 
 export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HTMLTextAreaElement> implements OnDestroy {
@@ -10,14 +10,14 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
 
     public id: number;
 
+    @Output('vkEnter') enter$: EventEmitter<AfVkEnterEvent> = new EventEmitter();
+
     constructor(
         protected _el: ElementRef<T>,
         protected _service: AfVirtualKeyboardService
     ) {
         this._input = this._el.nativeElement;
-        this._service.keyPress$.pipe(
-            filter(e => e.key !== 'enter')
-        )
+        this._service.keyPress$
         .subscribe(event => this._handleKeypress(event));
         this._registerInput();
     }
@@ -83,6 +83,9 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
                 case 'right':
                     this._handleRight(position);
                     break;
+                case 'enter':
+                    this._handleEnter(helper);
+                    break;
                 default:
                     this._handleLetter(event.key, helper);
                     break;
@@ -130,6 +133,15 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
     protected _handleRight(position: number) {
         this._input.focus();
         this._setCaret(position);
+    }
+
+    protected _handleEnter(event: { before: string, after: string, position: number }) {
+        const value = this._input.value;
+        if (this.enter$.observers.length > 0) {
+            this.enter$.emit({ value, event });
+        } else {
+            this._service.getEnterAction()({ value, event });
+        }
     }
 
     protected _setCaret(position: number, left: boolean = false) {

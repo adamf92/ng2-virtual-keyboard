@@ -13,11 +13,13 @@ export class AfVkTextAreaDirective extends AbstractAfVkInputDirective<HTMLTextAr
         _service: AfVirtualKeyboardService
     ) {
         super(_el, _service);
-        this._service.keyPress$.pipe(
-            filter(s => s.key === 'enter')
-        ).subscribe(event => {
-            this._handleKeypress({ key: '\r\n', position: event.position });
-            this._setCaret(event.position);
-        });
+    }
+
+    protected _handleEnter(event: { before: string, after: string, position: number }) {
+        if (this.enter$.observers.length > 0) {
+            this.enter$.emit({ value: this._input.value, event });
+        } else {
+            this._handleLetter('\r\n', event);
+        }
     }
 }
