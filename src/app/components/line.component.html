@@ -4,7 +4,6 @@
             <af-vk-special-key *ngIf="isTabKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
             <af-vk-caps-lock-key *ngIf="isCapsLockKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-caps-lock-key>
             <af-vk-shift-key *ngIf="isLShiftKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-shift-key>
-            <af-vk-special-key *ngIf="isLCtrlKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
             <af-vk-special-key *ngIf="isLAltKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
             <af-vk-space-key *ngIf="isSpaceKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-space-key>
         </ng-container>
@@ -19,7 +18,8 @@
             <af-vk-shift-key *ngIf="isRShiftKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-shift-key>
             <af-vk-enter-key *ngIf="isEnterKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-enter-key>
             <af-vk-special-key *ngIf="isRAltKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
-            <af-vk-special-key *ngIf="isRCtrlKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
+            <af-vk-special-key *ngIf="isLeftKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
+            <af-vk-special-key *ngIf="isRightKey(key.special)" [key]="key.special" [keyModel]="key"></af-vk-special-key>
         </ng-container>
     </ng-container>
 </div>

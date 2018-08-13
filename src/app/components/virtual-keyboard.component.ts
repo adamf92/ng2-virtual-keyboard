@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IQwertyKeyboard, QWERTY_KEYBOARD } from '../models/qwerty-keyboard.model';
 import { AfVirtualKeyboardService, ThemeColors } from '../services/virtual-keyboard.service';
 
@@ -8,30 +8,25 @@ import { AfVirtualKeyboardService, ThemeColors } from '../services/virtual-keybo
     styleUrls: ['virtual-keyboard.component.scss']
 })
 
-export class AfVirtualKeyboardComponent implements AfterViewInit {
+export class AfVirtualKeyboardComponent {
 
     public themeColor: ThemeColors;
 
-    protected _qwertyKeyboard: IQwertyKeyboard;
-
     constructor(
-        public service: AfVirtualKeyboardService
+        private _service: AfVirtualKeyboardService
     ) {
-        this.themeColor = service.getThemeColor();
-        this._qwertyKeyboard = this._qwertyKeyboard ? this._qwertyKeyboard : QWERTY_KEYBOARD;
+        this.themeColor = this._service.getThemeColor();
     }
 
-    ngAfterViewInit() {}
-
     public getQwertyKeyboard(): IQwertyKeyboard {
-        return this._qwertyKeyboard;
+        return this._service.getKeyboardModel();
     }
 
     public getOpenState() {
-        return this.service.getOpenState();
+        return this._service.getOpenState();
     }
 
     public fadeOut() {
-        return this.service.getFadeOut();
+        return this._service.getFadeOut();
     }
 }

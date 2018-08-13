@@ -31,16 +31,8 @@ export class AfVkLineComponent implements AfterViewInit {
         return key === 'r-shift';
     }
 
-    public isLCtrlKey(key: string): boolean {
-        return key === 'l-ctrl';
-    }
-
     public isLAltKey(key: string): boolean {
         return key === 'l-alt';
-    }
-
-    public isRCtrlKey(key: string): boolean {
-        return key === 'r-ctrl';
     }
 
     public isRAltKey(key: string): boolean {
@@ -49,6 +41,14 @@ export class AfVkLineComponent implements AfterViewInit {
 
     public isSpaceKey(key: string): boolean {
         return key === 'space';
+    }
+
+    public isLeftKey(key: string): boolean {
+        return key === 'left';
+    }
+
+    public isRightKey(key: string): boolean {
+        return key === 'right';
     }
 
     public isEnterKey(key: string): boolean {

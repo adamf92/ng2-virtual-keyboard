@@ -20,6 +20,20 @@ export interface IQwertyKeyboard {
     actionLine: IQwertyKeysLine;
 }
 
+export interface ICustomKeyboard {
+    topLine: ICustomKey[];
+    middleLine: ICustomKey[];
+    bottomLine: ICustomKey[];
+}
+
+
+export interface ICustomKey {
+    lowerCase: string;
+    upperCase: string;
+    alter?: string;
+    alterUpper?: string;
+}
+
 export const QWERTY_KEYBOARD: IQwertyKeyboard = {
     numberLine: {
         line: 'numberLine',
@@ -96,11 +110,11 @@ export const QWERTY_KEYBOARD: IQwertyKeyboard = {
     actionLine: {
         line: 'actionLine',
         keys: [
-            { special: 'l-ctrl' },
             { special: 'l-alt' },
             { special: 'space' },
             { special: 'r-alt' },
-            { special: 'r-ctrl' },
+            { special: 'left' },
+            { special: 'right' }
         ]
     }
 };

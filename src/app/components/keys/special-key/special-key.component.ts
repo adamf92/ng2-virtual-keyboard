@@ -23,9 +23,11 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
       case 'r-alt':
         this.keyName = 'alt';
         break;
-      case 'l-ctrl':
-      case 'r-ctrl':
-        this.keyName = 'ctrl';
+      case 'left':
+        this.keyName = '<';
+        break;
+      case 'right':
+        this.keyName = '>';
         break;
       case 'tab':
         this.keyName = 'tab';
@@ -42,11 +44,12 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
       case 'tab':
         super._keypress();
         break;
-      case 'ctrl': {
-        this._service.ctrlPress();
-      }
+      case '<':
+        this._service.arrowPress('left');
+        break;
+      case '>':
+        this._service.arrowPress('right');
+        break;
     }
-
   }
-
 }
