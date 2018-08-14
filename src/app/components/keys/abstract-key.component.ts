@@ -20,35 +20,39 @@ export abstract class AfVkAbstractKeyComponent implements OnInit {
 
     ngOnInit() {
         this.viewKey = this.key;
-        // Shift
-        this._service.shift$.subscribe(event => {
-            if (event) {
-                this.viewKey = this.keyModel.upperCase ? this.keyModel.upperCase : this.key;
-            } else {
-                this.viewKey = this.key;
-            }
-        });
+        if (!this.keyModel.special) {
+            // Shift
+            this._service.shift$.subscribe(event => {
+                if (event) {
+                    this.viewKey = this.keyModel.upperCase ? this.keyModel.upperCase : this.key;
+                } else {
+                    this.viewKey = this.key;
+                }
+            });
+            // Alt
+            this._service.alt$.subscribe(event => {
+                if (event) {
+                    this.viewKey = this.keyModel.alter ? this.keyModel.alter : this.key;
+                } else {
+                    this.viewKey = this.key;
+                }
+            });
+            // Alt + shift
+            this._service.altShift$.subscribe(event => {
+                if (event) {
+                    this.viewKey = this.keyModel.alterUpper ? this.keyModel.alterUpper :
+                    (this.keyModel.upperCase ? this.keyModel.upperCase : this.key);
+                } else {
+                    this.viewKey = this.key;
+                }
+            });
+        }
 
-        this._service.alt$.subscribe(event => {
-            if (event) {
-                this.viewKey = this.keyModel.alter ? this.keyModel.alter : this.key;
-            } else {
-                this.viewKey = this.key;
-            }
-        });
-
-        this._service.altShift$.subscribe(event => {
-            if (event) {
-                this.viewKey = this.keyModel.alterUpper ? this.keyModel.alterUpper :
-                (this.keyModel.upperCase ? this.keyModel.upperCase : this.key);
-            } else {
-                this.viewKey = this.key;
-            }
-        });
     }
 
-    @HostListener('click') onClick() {
+    @HostListener('click', ['$event']) onClick(event: MouseEvent) {
         this._keypress();
+        event.stopPropagation();
     }
 
     protected _keypress() {

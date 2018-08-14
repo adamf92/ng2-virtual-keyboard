@@ -1,7 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AfVkKeyEvent, AfVkEnterEvent } from '../models/key-event.model';
 import { IQwertyKey, IQwertyKeyboard, QWERTY_KEYBOARD, ICustomKeyboard } from '../models/qwerty-keyboard.model';
-import { AfVkInputDirectives } from '../directives/abstract-input.directive';
 
 @Injectable()
 export class AfVirtualKeyboardService {
@@ -28,7 +27,7 @@ export class AfVirtualKeyboardService {
      *
      * Emitting AfVkKeyEvent object into input directives
      */
-    public keyPress$: EventEmitter<AfVkKeyEvent> = new EventEmitter();
+    public keyPress$: EventEmitter<string> = new EventEmitter();
     /**
      * Shift Stream
      *
@@ -50,6 +49,18 @@ export class AfVirtualKeyboardService {
      * keys labels to alternative upper case.
      */
     public altShift$: EventEmitter<boolean> = new EventEmitter();
+    /**
+     * Focus Stream
+     *
+     * Emitting void event to focus active input
+     */
+    public focus$: EventEmitter<void> = new EventEmitter();
+    /**
+     * Selection Stream
+     *
+     * Emitting event with direction of selection
+     */
+    public selection$: EventEmitter<string> = new EventEmitter();
     /**
      * Shift
      *
@@ -87,8 +98,8 @@ export class AfVirtualKeyboardService {
      * Emitting keyPress event with keyPress$
      * @param key
      */
-    public keyPress(key: string) {
-        this.keyPress$.emit({ key, position: this._position });
+    public keyPress(key: string): void {
+        this.keyPress$.emit(key);
         if (this._shift && !this._caps) {
             this._shift = false;
             if (this._alt) {
@@ -103,7 +114,7 @@ export class AfVirtualKeyboardService {
      *
      * Changing next letter to upper case
      */
-    public shiftPress() {
+    public shiftPress(): void {
         this._shift = !this._shift;
         if (this._shift) {
             if (this._alt) {
@@ -119,13 +130,14 @@ export class AfVirtualKeyboardService {
                 this.shift$.emit(false);
             }
         }
+        this.focus$.emit();
     }
     /**
      * Alt Press
      *
      * Changing next letter to alternative value
      */
-    public altPress() {
+    public altPress(): void {
         this._alt = !this._alt;
         if (this._alt) {
             if (this._shift) {
@@ -140,13 +152,14 @@ export class AfVirtualKeyboardService {
                 this.alt$.emit(false);
             }
         }
+        this.focus$.emit();
     }
     /**
      * Caps Lock Press
      *
      * Changing next letters to upper case until caps lock / shift press again
      */
-    public capsLockPress() {
+    public capsLockPress(): void {
         this._caps = !this._caps;
         this.shiftPress();
     }
@@ -155,8 +168,8 @@ export class AfVirtualKeyboardService {
      *
      * Emitting enter press event with keyPress$
      */
-    public enterPress() {
-        this.keyPress$.emit({ key: 'enter', position: this._position });
+    public enterPress(): void {
+        this.keyPress$.emit('enter');
     }
     /**
      * Arrow Press
@@ -165,8 +178,12 @@ export class AfVirtualKeyboardService {
      * Changing positon of caret in input.
      * @param key
      */
-    public arrowPress(key: 'left' | 'right') {
-        this.keyPress$.emit({ key, position: this._position });
+    public arrowPress(key: 'left' | 'right'): void {
+        this.keyPress$.emit(key);
+    }
+
+    public _makeSelection(key: 'left' | 'right') {
+        this.selection$.emit(key);
     }
     /**
      * Set Enter Action
@@ -174,7 +191,7 @@ export class AfVirtualKeyboardService {
      * Set callback for enter press action
      * @param action
      */
-    public setEnterAction(action: (event?: AfVkEnterEvent) => any) {
+    public setEnterAction(action: (event?: AfVkEnterEvent) => any): void {
         this._enterAction = action;
     }
     /**
@@ -184,15 +201,6 @@ export class AfVirtualKeyboardService {
      */
     public getEnterAction(): (event?: AfVkEnterEvent) => any {
         return this._enterAction;
-    }
-    /**
-     * Set Position
-     *
-     * Save position of caret in input to service on input blur
-     * @param position
-     */
-    public setPosition(position: number) {
-        this._position = position;
     }
     /**
      * Get Open State
@@ -207,7 +215,7 @@ export class AfVirtualKeyboardService {
      *
      * Open keyboard and set animation state
      */
-    public openKeyboard() {
+    public openKeyboard(): void {
         this._opened = true;
         this._isAnimating = true;
         setTimeout(() => {
@@ -219,7 +227,7 @@ export class AfVirtualKeyboardService {
      *
      * Close keyboard and set animation state
      */
-    public closeKeyboard() {
+    public closeKeyboard(): void {
         this._opened = false;
         this._isAnimating = true;
         setTimeout(() => {
@@ -231,15 +239,18 @@ export class AfVirtualKeyboardService {
      *
      * Open/close keyboard
      */
-    public toggleKeyboard() {
+    public toggleKeyboard(): void {
         this._opened ? this.closeKeyboard() : this.openKeyboard();
+        if (this._opened) {
+            this.focus$.emit();
+        }
     }
     /**
      * Is Animating
      *
      * Get animation state of keyboard
      */
-    public isAnimating() {
+    public isAnimating(): boolean {
         return this._isAnimating;
     }
     /**
@@ -265,7 +276,7 @@ export class AfVirtualKeyboardService {
      * Register custom letter keys
      * @param keys
      */
-    public registerKeys(keys: ICustomKeyboard) {
+    public registerKeys(keys: ICustomKeyboard): void {
         if (keys.topLine.length !== 10) {
             throw new Error('Top line should have 10 letter keys');
         } else if (keys.middleLine.length !== 9) {
@@ -295,7 +306,7 @@ export class AfVirtualKeyboardService {
     /**
      * Get Keyboard Model
      */
-    public getKeyboardModel() {
+    public getKeyboardModel(): IQwertyKeyboard {
         return this._keyboardModel;
     }
 

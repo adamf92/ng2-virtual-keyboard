@@ -7,6 +7,9 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
 
     protected _input: T;
     protected _active: boolean = false;
+    protected _position: number;
+    protected _selection: { start: number, end: number } = null;
+    protected _selectionDirection: 'left' | 'right' = null;
 
     public id: number;
 
@@ -17,13 +20,24 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
         protected _service: AfVirtualKeyboardService
     ) {
         this._input = this._el.nativeElement;
-        this._service.keyPress$
-        .subscribe(event => this._handleKeypress(event));
+        this._service.keyPress$.subscribe(event => this._handleKeypress(event));
+        this._service.focus$.subscribe(() => this._handleFocus());
+        this._service.selection$.subscribe(event => this._makeSelection(event));
         this._registerInput();
     }
 
     @HostListener('blur') onBlur() {
-        this._service.setPosition(this._input.selectionStart);
+        this._position = this._input.selectionStart;
+        if (this._input.selectionStart === this._input.selectionEnd) {
+            this._selection = null;
+            this._selectionDirection = null;
+        } else {
+            this._selection = {
+                start: this._input.selectionStart,
+                end: this._input.selectionEnd
+            };
+            this._selectionDirection = this._selectionDirection ? this._selectionDirection : 'left';
+        }
     }
 
     @HostListener('focus') onFocus() {
@@ -43,7 +57,7 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
         );
     }
 
-    public setActive(active: boolean) {
+    public setActive(active: boolean): void {
         this._active = active;
     }
 
@@ -55,19 +69,34 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
         return this._input;
     }
 
-    protected _registerInput() {
+    protected _registerInput(): void {
         this.id = AfVkInputDirectives.inputs.length + 1;
         AfVkInputDirectives.inputs.push(this);
     }
 
-    protected _handleKeypress(event: AfVkKeyEvent) {
+    protected _handleFocus(): void {
         if (this._active) {
-            const position = event.position;
-            const before = this._input.value.substring(0, position);
-            const after = this._input.value.substring(position);
+            this._input.focus();
+            if (this._selection) {
+                this._input.selectionStart = this._selection.start;
+                this._input.selectionEnd = this._selection.end;
+            }
+        }
+    }
 
-            const helper = { before, after, position };
-            switch (event.key) {
+    protected _handleKeypress(key: string) {
+        if (this._active) {
+            let before: string, after: string;
+            if (this._selection) {
+                before = this._input.value.substring(0, this._selection.start);
+                after = this._input.value.substring(this._selection.end);
+            } else {
+                before = this._input.value.substring(0, this._position);
+                after = this._input.value.substring(this._position);
+            }
+
+            const helper = { before, after };
+            switch (key) {
                 case 'backspace':
                     this._handleBackspace(helper);
                     break;
@@ -78,39 +107,44 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
                     this._handleTab();
                     break;
                 case 'left':
-                    this._handleLeft(position);
+                    this._handleLeft();
                     break;
                 case 'right':
-                    this._handleRight(position);
+                    this._handleRight();
                     break;
                 case 'enter':
                     this._handleEnter(helper);
                     break;
                 default:
-                    this._handleLetter(event.key, helper);
+                    this._handleLetter(key, helper);
                     break;
             }
         }
     }
 
-    protected _handleBackspace({ before, after, position }) {
+    protected _handleBackspace({ before, after }) {
         this._input.focus();
         if (this._input.value.length > 0) {
-            this._input.value = before.substring(0, before.length - 1) + after;
-            this._setCaret(position, true);
+            if (this._selection) {
+                this._input.value = before + after;
+                this._setCaret('center');
+            } else {
+                this._input.value = before.substring(0, before.length - 1) + after;
+                this._setCaret(this._position === 0 ? 'center' : 'left');
+            }
         }
     }
 
-    protected _handleLetter(key, { before, after, position }) {
+    protected _handleLetter(key, { before, after }) {
         this._input.focus();
         this._input.value = before + key + after;
-        this._setCaret(position);
+        this._setCaret();
     }
 
-    protected _handleSpace({ before, after, position }) {
+    protected _handleSpace({ before, after }) {
         this._input.focus();
         this._input.value = before + ' ' + after;
-        this._setCaret(position);
+        this._setCaret();
     }
 
     protected _handleTab() {
@@ -125,18 +159,19 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
         }, 0);
     }
 
-    protected _handleLeft(position: number) {
+    protected _handleLeft() {
         this._input.focus();
-        this._setCaret(position, true);
+        this._setCaret(this._position === 0 ? 'center' : 'left');
     }
 
-    protected _handleRight(position: number) {
+    protected _handleRight() {
         this._input.focus();
-        this._setCaret(position);
+        this._setCaret();
     }
 
-    protected _handleEnter(event: { before: string, after: string, position: number }) {
+    protected _handleEnter({ before, after }) {
         const value = this._input.value;
+        const event = { before, after, position: this._position };
         if (this.enter$.observers.length > 0) {
             this.enter$.emit({ value, event });
         } else {
@@ -144,13 +179,55 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
         }
     }
 
-    protected _setCaret(position: number, left: boolean = false) {
-        if (left) {
-            this._input.selectionStart = position - 1;
-            this._input.selectionEnd = position - 1;
-        } else {
-            this._input.selectionStart = position + 1;
-            this._input.selectionEnd = position + 1;
+    protected _makeSelection(direction: 'left' | 'right') {
+        if (this._active) {
+            this._input.focus();
+            if (!this._selection) {
+                if (direction === 'left') {
+                    this._selectionDirection = 'left';
+                    this._input.selectionStart = this._position !== 0 ? this._position - 1 : 0;
+                    this._input.selectionEnd = this._position;
+                } else {
+                    this._selectionDirection = 'right';
+                    this._input.selectionStart = this._position;
+                    this._input.selectionEnd = this._position + 1;
+                }
+            } else {
+                if (direction === 'left') {
+                    if (this._selectionDirection === 'left') {
+                        this._input.selectionStart = this._selection.start !== 0 ? this._selection.start - 1 : 0;
+                        this._input.selectionEnd = this._selection.end;
+                    } else {
+                        this._input.selectionStart = this._selection.start;
+                        this._input.selectionEnd = this._selection.end - 1;
+                    }
+                } else {
+                    if (this._selectionDirection === 'left') {
+                        this._input.selectionStart = this._selection.start + 1;
+                        this._input.selectionEnd = this._selection.end;
+                    } else {
+                        this._input.selectionStart = this._selection.start;
+                        this._input.selectionEnd = this._selection.end + 1;
+                    }
+                }
+            }
+        }
+    }
+
+    protected _setCaret(direction: 'left' | 'right' | 'center' = 'right') {
+        switch (direction) {
+            case 'left':
+                this._input.selectionStart = this._position - 1;
+                this._input.selectionEnd = this._position - 1;
+            break;
+            case 'right':
+                this._input.selectionStart = this._position + 1;
+                this._input.selectionEnd = this._position + 1;
+            break;
+            case 'center':
+                this._input.selectionStart = this._position;
+                this._input.selectionEnd = this._position;
+            break;
         }
     }
 }

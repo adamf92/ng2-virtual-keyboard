@@ -9,35 +9,56 @@ import { AfVirtualKeyboardService } from '../../../services/virtual-keyboard.ser
 })
 export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements OnInit {
 
-  public keyName = '';
-
   constructor(
-    settings: AfVirtualKeyboardService
+    service: AfVirtualKeyboardService
   ) {
-    super(settings);
+    super(service);
   }
 
   ngOnInit() {
     switch (this.key) {
       case 'l-alt':
       case 'r-alt':
-        this.keyName = 'alt';
+        this.viewKey = 'alt';
         break;
       case 'left':
-        this.keyName = '<';
+        this.viewKey = '<';
         break;
       case 'right':
-        this.keyName = '>';
+        this.viewKey = '>';
         break;
       case 'tab':
-        this.keyName = 'tab';
+        this.viewKey = 'tab';
         break;
     }
-    this.viewKey = this.keyName;
+
+    if (this.key === 'left' || this.key === 'right') {
+      this._service.shift$.subscribe(shift => {
+        if (shift) {
+          if (this.viewKey.length === 1) {
+            this.viewKey = this.viewKey + this.viewKey;
+          }
+        } else {
+          this.viewKey = this.viewKey[0];
+        }
+      });
+      this._service.alt$.subscribe(() => {
+        this.viewKey = this.viewKey[0];
+      });
+      this._service.altShift$.subscribe(shift => {
+        if (shift) {
+          if (this.viewKey.length === 1) {
+            this.viewKey = this.viewKey + this.viewKey;
+          }
+        } else {
+          this.viewKey = this.viewKey[0];
+        }
+      });
+    }
   }
 
   protected _keypress() {
-    switch (this.keyName) {
+    switch (this.viewKey) {
       case 'alt':
         this._service.altPress();
         break;
@@ -49,6 +70,12 @@ export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements
         break;
       case '>':
         this._service.arrowPress('right');
+        break;
+      case '<<':
+        this._service._makeSelection('left');
+        break;
+      case '>>':
+        this._service._makeSelection('right');
         break;
     }
   }

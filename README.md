@@ -1,7 +1,7 @@
 # af-ng-virtual-keyboard
 Open Source project
 
-###### current version v0.0.7 (almost stable)
+###### current version v0.0.8 (almost stable)
 ###### not stable until v0.1.0 !
 
 As currently there isn't any good virtual-keyboard for Angular, I decided to make my own one.
