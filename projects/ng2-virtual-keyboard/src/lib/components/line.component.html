@@ -1,0 +1,25 @@
+<div class="line row container">
+    <ng-container *ngFor="let key of line.keys">
+        <ng-container *ngIf="key.special">
+            <vk-special-key *ngIf="isTabKey(key.special)" [key]="key.special" [keyModel]="key"></vk-special-key>
+            <vk-caps-lock-key *ngIf="isCapsLockKey(key.special)" [key]="key.special" [keyModel]="key"></vk-caps-lock-key>
+            <vk-shift-key *ngIf="isLShiftKey(key.special)" [key]="key.special" [keyModel]="key"></vk-shift-key>
+            <vk-special-key *ngIf="isLAltKey(key.special)" [key]="key.special" [keyModel]="key"></vk-special-key>
+            <vk-space-key *ngIf="isSpaceKey(key.special)" [key]="key.special" [keyModel]="key"></vk-space-key>
+        </ng-container>
+        <ng-container *ngIf="key.number || key.number == 0">
+            <vk-letter-key [key]="key.number" [keyModel]="key"></vk-letter-key>
+        </ng-container>
+        <ng-container *ngIf="key.lowerCase">
+            <vk-letter-key [key]="key.lowerCase" [keyModel]="key"></vk-letter-key>
+        </ng-container>
+        <ng-container *ngIf="key.special">
+            <vk-backspace-key *ngIf="isBackspaceKey(key.special)" [key]="key.special" [keyModel]="key"></vk-backspace-key>
+            <vk-shift-key *ngIf="isRShiftKey(key.special)" [key]="key.special" [keyModel]="key"></vk-shift-key>
+            <vk-enter-key *ngIf="isEnterKey(key.special)" [key]="key.special" [keyModel]="key"></vk-enter-key>
+            <vk-special-key *ngIf="isRAltKey(key.special)" [key]="key.special" [keyModel]="key"></vk-special-key>
+            <vk-special-key *ngIf="isLeftKey(key.special)" [key]="key.special" [keyModel]="key"></vk-special-key>
+            <vk-special-key *ngIf="isRightKey(key.special)" [key]="key.special" [keyModel]="key"></vk-special-key>
+        </ng-container>
+    </ng-container>
+</div>

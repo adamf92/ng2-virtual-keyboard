@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Ng2VirtualKeyboardModule } from 'ng2-virtual-keyboard';
 
 
 import { AppComponent } from './app.component';
-import { AfVirtualKeyboardModule } from './virtual-keyboard.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AfVirtualKeyboardModule } from './virtual-keyboard.module';
   ],
   imports: [
     BrowserModule,
-    AfVirtualKeyboardModule
+    Ng2VirtualKeyboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
