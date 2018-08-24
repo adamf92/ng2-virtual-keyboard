@@ -18,12 +18,6 @@
     "module": "es2015",
     "baseUrl": "./",
     "paths": {
-      "ng2-virtual-keyboard": [
-        "dist/ng2-virtual-keyboard"
-      ],
-      "ng2-virtual-keyboard/*": [
-        "dist/ng2-virtual-keyboard/*"
-      ]
     }
   }
 }

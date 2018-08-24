@@ -1,11 +1,8 @@
-import { Component, HostListener } from '@angular/core';
-import { EventListener } from '@angular/core/src/debug/debug_node';
-import { AfVirtualKeyboardService } from './services/virtual-keyboard.service';
-import { ICustomKeyboard } from './models/qwerty-keyboard.model';
-import { AfVkEnterEvent } from './models/key-event.model';
+import { Component } from '@angular/core';
+import { Ng2VkCustomKeyboardModel, Ng2VkService, Ng2VkEnterEvent } from 'ng2-virtual-keyboard';
 
 // Example of custom letter keys to register
-const customKeys: ICustomKeyboard = {
+const customKeys: Ng2VkCustomKeyboardModel = {
   topLine: [
     { lowerCase: 'q', upperCase: 'A' },
     { lowerCase: 'w', upperCase: 'D' },
@@ -48,13 +45,13 @@ const customKeys: ICustomKeyboard = {
 export class AppComponent {
 
   constructor(
-    private _service: AfVirtualKeyboardService
+    private _service: Ng2VkService
   ) {
     _service.setThemeColor('red');
     _service.setEnterAction((event) => console.log('Event from service', event));
   }
 
-  public vkEnter(event: AfVkEnterEvent) {
+  public vkEnter(event: Ng2VkEnterEvent) {
     console.log('Event from output', event);
   }
 }

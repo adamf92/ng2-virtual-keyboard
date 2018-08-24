@@ -1,10 +1,10 @@
-# af-ng-virtual-keyboard
-Open Source project
+# ng2-virtual-keyboard
+###### current version v0.1.1
 
-###### current version v0.0.8 (almost stable)
-###### not stable until v0.1.0 !
+Virtual Keyboard for Angular 6
 
-As currently there isn't any good virtual-keyboard for Angular, I decided to make my own one.
+#### NPM
+[npm package](https://www.npmjs.com/package/ng2-virtual-keyboard)
 
 ### Demo
 Coming Soon
@@ -12,24 +12,28 @@ Coming Soon
 ### Docs
 Coming Soon
 
-### Dependencies
-##### Eric Meyer's Reset
-[http://meyerweb.com/eric/tools/css/reset/](http://meyerweb.com/eric/tools/css/reset/) \
-[https://github.com/ianrose/reset-scss](https://github.com/ianrose/reset-scss)
-##### Bootstrap breakpoints mixins
-[http://getbootstrap.com](http://getbootstrap.com)
-
 # Usage
-
-1. Import AfVirtualKeyboardModule
-2. To set theme colors inject Ng2VkService to component
-and set one of colors: 'blue', 'red', 'green', 'black', 'orange' \
-with Ng2VkService.setThemeColor(color) method.
-3. Attach AfVkToggleDirective ([AfVkToggle]) to any element you want \
-ex. `<button afVkToggle>Toggle Keyboard</button>`
-4. Attach AfVkInputDirective ([AfVkInput]) to any input element you want \
-ex. `<input type="text" afVkInput>`
-5. Virtual Keyboard is working with many inputs and inserting values only to \
+1. Install package
+`npm install ng2-virtual-keyboard`
+2. Import Ng2VirtualKeyboardModule
+3. To set theme colors inject Ng2VkService to component
+and set one of colors: 'blue', 'red', 'green', 'black', 'orange', 'custom \
+with Ng2VkService.setThemeColor(color) method. With custom you have to provide \
+your own styles with .custom class.
+4. Attach Toggle Directive - vkToggle to any element you want \
+ex. `<button vkToggle>Toggle Keyboard</button>`
+5. Attach Input Directive - vkInput to any input element you want \
+ex. `<input type="text" afVkInput>` \
+or Textarea Directive - vkTextArea to textares \
+ex. `<textarea vkTextArea>`
+6. Virtual Keyboard is working with many inputs and inserting values only to \
    focused one. To switch focused input press Tab
-6. More actions:
-  - set enter or ctrl actions with Ng2VkService.setEnterAction(callback) and Ng2VkService.setCtrlAction(callback)
+7. Virtual Keyboard could create selections with shift + arrows
+8. To open / close keyboard without vkToggle use toggleKeyboard, openKeyboard and closeKeyboard methods from Ng2VkService
+9. Set enter action:
+- for all inputs - with setEnterAction(callback) method from Ng2VkService
+- for one input - with (vkEnter) output property of vkInput and vkTextArea directives
+- action for one input has higher priority
+- callback argument and $event object from vkEnter are type of Ng2VkEnterEvent and contain input value and event object
+with before / after strings and carret position
+- vkTextArea use enter action only with vkEnter, default action is new line
