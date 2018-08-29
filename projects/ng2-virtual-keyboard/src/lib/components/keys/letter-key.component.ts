@@ -4,7 +4,8 @@ import { Ng2VkService } from '../../services/virtual-keyboard.service';
 
 @Component({
     selector: 'vk-letter-key',
-    templateUrl: 'letter-key.component.html'
+    templateUrl: 'letter-key.component.html',
+    styleUrls: ['key.scss']
 })
 
 export class AfVkLetterKeyComponent extends AfVkAbstractKeyComponent {

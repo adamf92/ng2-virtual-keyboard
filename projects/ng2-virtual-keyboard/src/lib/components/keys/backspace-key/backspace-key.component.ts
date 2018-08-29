@@ -4,7 +4,8 @@ import { Ng2VkService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'vk-backspace-key',
-  templateUrl: './backspace-key.component.html'
+  templateUrl: './backspace-key.component.html',
+  styleUrls: ['../key.scss']
 })
 export class AfVkBackspaceKeyComponent extends AfVkAbstractKeyComponent {
 

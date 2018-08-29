@@ -4,7 +4,8 @@ import { Ng2VkService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'vk-caps-lock-key',
-  templateUrl: './caps-lock-key.component.html'
+  templateUrl: './caps-lock-key.component.html',
+  styleUrls: ['../key.scss']
 })
 export class AfVkCapsLockKeyComponent extends AfVkAbstractKeyComponent {
 

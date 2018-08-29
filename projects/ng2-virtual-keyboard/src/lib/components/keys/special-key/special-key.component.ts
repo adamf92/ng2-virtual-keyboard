@@ -5,7 +5,8 @@ import { Ng2VkService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'vk-special-key',
-  templateUrl: './special-key.component.html'
+  templateUrl: './special-key.component.html',
+  styleUrls: ['../key.scss']
 })
 export class AfVkSpecialKeyComponent extends AfVkAbstractKeyComponent implements OnInit {
 

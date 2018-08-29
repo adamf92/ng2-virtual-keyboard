@@ -5,7 +5,8 @@ import { Ng2VkService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'vk-shift-key',
-  templateUrl: './shift-key.component.html'
+  templateUrl: './shift-key.component.html',
+  styleUrls: ['../key.scss']
 })
 export class AfVkShiftKeyComponent extends AfVkAbstractKeyComponent {
 

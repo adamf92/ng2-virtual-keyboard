@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/reset-css/reset.scss';
-@import 'assets/bootstrap/functions';
-@import 'assets/bootstrap/variables';
-@import 'assets/bootstrap/breakpoints';
-@import 'assets/rwd-keys';
+@import '../../assets/reset-css/reset.scss';
+@import '../../assets/bootstrap/functions';
+@import '../../assets/bootstrap/variables';
+@import '../../assets/bootstrap/breakpoints';
+@import '../../assets/rwd-keys';
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
 
 // For all keys
@@ -66,6 +66,4 @@
             box-shadow: 0 0 10px #83afff;
         }
     }
-
-
 }

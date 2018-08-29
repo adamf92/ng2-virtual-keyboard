@@ -4,7 +4,8 @@ import { Ng2VkService } from '../../../services/virtual-keyboard.service';
 
 @Component({
   selector: 'vk-enter-key',
-  templateUrl: './enter-key.component.html'
+  templateUrl: './enter-key.component.html',
+  styleUrls: ['../key.scss']
 })
 export class AfVkEnterKeyComponent extends AfVkAbstractKeyComponent {
 
