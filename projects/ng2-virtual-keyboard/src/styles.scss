@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/reset-css/reset.scss';
+@import 'assets/bootstrap/functions';
+@import 'assets/bootstrap/variables';
+@import 'assets/bootstrap/breakpoints';
+@import 'assets/rwd-keys';
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
+
+// For all keys
+.key {
+    // border
+    border: none;
+    border-radius: 5px;
+
+    // text
+    font-family: 'Do Hyeon', Verdana, sans-serif; 
+    text-align: center;
+    color: #fff;
+
+    // misc
+    cursor: pointer;
+
+    // Themes
+    &.blue {
+        background-color: #1b398c;
+    
+        &:hover {
+            background-color: #3659b8;
+            box-shadow: 0 0 10px #d37b58;
+        }
+    }
+    
+    &.red {
+        background-color: #8c1b1b;
+    
+        &:hover {
+            background-color: #c03939;
+            box-shadow: 0 0 10px #73b9e2;
+        }
+    }
+    
+    &.green {
+        background-color: #327d13;
+    
+        &:hover {
+            background-color: #52a52f;
+            box-shadow: 0 0 10px #e28073;
+    
+        }
+    }
+    
+    &.black {
+        background-color: #000;
+    
+        &:hover {
+            background-color: #464646;
+            box-shadow: 0 0 10px #e29273;
+        }
+    }
+    
+    &.orange {
+        background-color: #b7722b;
+    
+        &:hover {
+            background-color: #885017;
+            box-shadow: 0 0 10px #83afff;
+        }
+    }
+
+
+}

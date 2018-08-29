@@ -128,7 +128,8 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ng2-virtual-keyboard/tsconfig.lib.json",
-            "project": "projects/ng2-virtual-keyboard/ng-package.json"
+            "project": "projects/ng2-virtual-keyboard/ng-package.json",
+            "styles": "projects/ng2-virtual-keyboard/src/styles.scss"
           },
           "configurations": {
             "production": {
