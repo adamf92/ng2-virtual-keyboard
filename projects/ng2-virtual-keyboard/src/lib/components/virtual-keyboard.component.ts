@@ -1,7 +1,8 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { IQwertyKeyboard, QWERTY_KEYBOARD } from '../models/qwerty-keyboard.model';
+import { Component } from '@angular/core';
+import { IQwertyKeyboard } from '../models/qwerty-keyboard.model';
 import { Ng2VkService, ThemeColors } from '../services/virtual-keyboard.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'vk-keyboard',
@@ -17,13 +18,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class AfVirtualKeyboardComponent {
 
-    public themeColor: ThemeColors;
-
     constructor(
         private _service: Ng2VkService
-    ) {
-        this.themeColor = this._service.getThemeColor();
-    }
+    ) {}
 
     public getQwertyKeyboard(): IQwertyKeyboard {
         return this._service.getKeyboardModel();
@@ -35,6 +32,10 @@ export class AfVirtualKeyboardComponent {
 
     public focus(event) {
         this._service.focus$.emit();
+    }
+
+    public getThemeColor(): Observable<ThemeColors> {
+        return this._service.colorChange$.asObservable();
     }
 
 }

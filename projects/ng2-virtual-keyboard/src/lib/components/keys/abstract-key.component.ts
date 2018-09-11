@@ -1,6 +1,7 @@
 import { HostListener, Input, OnInit } from '@angular/core';
 import { Ng2VkService, ThemeColors } from '../../services/virtual-keyboard.service';
 import { IQwertyKey } from '../../models/qwerty-keyboard.model';
+import { Observable } from 'rxjs';
 
 export abstract class AfVkAbstractKeyComponent implements OnInit {
 
@@ -10,13 +11,9 @@ export abstract class AfVkAbstractKeyComponent implements OnInit {
 
     public viewKey: string;
 
-    public themeColor: ThemeColors;
-
     constructor(
         protected _service: Ng2VkService
-    ) {
-        this.themeColor = _service.getThemeColor();
-    }
+    ) {}
 
     ngOnInit() {
         this.viewKey = this.key;
@@ -47,7 +44,6 @@ export abstract class AfVkAbstractKeyComponent implements OnInit {
                 }
             });
         }
-
     }
 
     @HostListener('click', ['$event']) onClick(event: MouseEvent) {
@@ -57,5 +53,9 @@ export abstract class AfVkAbstractKeyComponent implements OnInit {
 
     protected _keypress() {
         this._service.keyPress(this.viewKey);
+    }
+
+    public getThemeColor(): Observable<ThemeColors> {
+        return this._service.colorChange$.asObservable();
     }
 }

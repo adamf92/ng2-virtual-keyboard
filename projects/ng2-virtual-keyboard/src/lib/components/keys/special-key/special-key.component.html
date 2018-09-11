@@ -1,3 +1,3 @@
-<button class="key special-key small-special-key {{ themeColor }}">
+<button class="key special-key small-special-key " [ngClass]="getThemeColor() | async">
   {{ viewKey }}
 </button>

@@ -1,5 +1,5 @@
 <div *ngIf="getOpenState()" [@vkToggle] (click)="focus($event)"
- class="vk virtual-keyboard container {{ themeColor }}">
+ class="vk virtual-keyboard container " [ngClass]="getThemeColor() | async">
   <div class="vk virtual-keyboard inner">
     <vk-line [line]="getQwertyKeyboard().numberLine"></vk-line>
     <vk-line [line]="getQwertyKeyboard().topLine"></vk-line>

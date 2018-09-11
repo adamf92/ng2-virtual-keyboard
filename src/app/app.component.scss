@@ -1,4 +1,5 @@
-::ng-deep af-virtual-keyboard {
+// Keyboard custom color theme
+::ng-deep vk-keyboard {
     .vk.virtual-keyboard.container.custom {
         background-color: #ad6200;
 
@@ -11,4 +12,16 @@
             }
         }
     }
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: Impact, fantasy;
+    font-size: 50px;
+    margin: 15px 0px;
+    text-shadow: 3px 2px 3px #ffa50070;
+}
+
+input {
+    margin-left: 15px;
 }

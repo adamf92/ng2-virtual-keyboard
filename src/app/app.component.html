@@ -7,4 +7,8 @@
 <br><br><br>
 <button type="button" vkToggle>OPEN</button>
 
+<div>
+    <button *ngFor="let color of ['red', 'green', 'blue', 'orange', 'black', 'custom']" (click)="changeTheme(color)">{{color}}</button>
+</div>
+
 <vk-keyboard></vk-keyboard>

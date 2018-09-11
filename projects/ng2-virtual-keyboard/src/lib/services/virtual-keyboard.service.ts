@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Ng2VkKeyEvent, Ng2VkEnterEvent } from '../models/key-event.model';
 import { IQwertyKey, IQwertyKeyboard, QWERTY_KEYBOARD, Ng2VkCustomKeyboardModel } from '../models/qwerty-keyboard.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class Ng2VkService {
@@ -61,6 +62,12 @@ export class Ng2VkService {
      * Emitting event with direction of selection
      */
     public selection$: EventEmitter<string> = new EventEmitter();
+    /**
+     * Color Change Stream
+     *
+     * Emitting event with new theme color
+     */
+    public colorChange$: BehaviorSubject<ThemeColors> = new BehaviorSubject(this._themeColor);
     /**
      * Shift
      *
@@ -254,14 +261,6 @@ export class Ng2VkService {
         return this._isAnimating;
     }
     /**
-     * Get Theme Color
-     *
-     * Get theme color of keyboard
-     */
-    public getThemeColor(): ThemeColors {
-        return this._themeColor;
-    }
-    /**
      * Set Theme Color
      *
      * Set theme color of keyboard
@@ -269,6 +268,7 @@ export class Ng2VkService {
      */
     public setThemeColor(color: ThemeColors): void {
         this._themeColor = color;
+        this.colorChange$.next(color);
     }
     /**
      * Register Keys

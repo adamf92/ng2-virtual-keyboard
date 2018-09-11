@@ -14,7 +14,6 @@ import { AfVkTextAreaDirective } from './directives/text-area.directive';
     imports: [
         AfVkComponentModule,
         AfVkKeysModule,
-        BrowserAnimationsModule,
         CommonModule
     ],
     exports: [

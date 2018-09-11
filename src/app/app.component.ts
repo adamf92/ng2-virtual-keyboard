@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Ng2VkCustomKeyboardModel, Ng2VkService, Ng2VkEnterEvent } from 'ng2-virtual-keyboard';
+import { Ng2VkCustomKeyboardModel, Ng2VkService, Ng2VkEnterEvent, ThemeColors } from 'ng2-virtual-keyboard';
 
 // Example of custom letter keys to register
 const customKeys: Ng2VkCustomKeyboardModel = {
@@ -53,5 +53,9 @@ export class AppComponent {
 
   public vkEnter(event: Ng2VkEnterEvent) {
     console.log('Event from output', event);
+  }
+
+  public changeTheme(color: ThemeColors) {
+    this._service.setThemeColor(color);
   }
 }

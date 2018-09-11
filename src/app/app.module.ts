@@ -4,6 +4,7 @@ import { Ng2VirtualKeyboardModule } from 'ng2-virtual-keyboard';
 
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     Ng2VirtualKeyboardModule
   ],
   providers: [],

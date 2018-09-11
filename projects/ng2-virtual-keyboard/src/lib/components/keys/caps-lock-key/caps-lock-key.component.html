@@ -1,6 +1,6 @@
-<button class="key special-key caps-lock-key {{ themeColor }} normal">
+<button class="key special-key caps-lock-key normal " [ngClass]="getThemeColor() | async">
   {{ key }}
 </button>
-<button class="key special-key caps-lock-key {{ themeColor }} small">
+<button class="key special-key caps-lock-key small " [ngClass]="getThemeColor() | async">
   caps
 </button>
