@@ -1,5 +1,5 @@
 # ng2-virtual-keyboard
-###### current version v0.2.0
+###### current version v0.3.0
 
 Virtual Keyboard for Angular 6
 
