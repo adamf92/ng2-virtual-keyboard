@@ -1,7 +1,6 @@
 import { OnDestroy, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { Ng2VkService } from '../services/virtual-keyboard.service';
-import { Ng2VkKeyEvent, Ng2VkEnterEvent } from '../models/key-event.model';
-import { filter } from 'rxjs/operators';
+import { Ng2VkEnterEvent } from '../models/key-event.model';
 
 export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HTMLTextAreaElement> implements OnDestroy {
 

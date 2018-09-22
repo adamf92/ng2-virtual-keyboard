@@ -5,6 +5,7 @@ export interface IQwertyKey {
     alter?: string;
     alterUpper?: string;
     special?: string;
+    viewKey?: string | number;
 }
 
 export interface IQwertyKeysLine {
@@ -95,7 +96,7 @@ export const QWERTY_KEYBOARD: IQwertyKeyboard = {
         keys: [
             { special: 'l-shift' },
             { lowerCase: 'z', upperCase: 'Z', alter: 'ż', alterUpper: 'Ż' },
-            { lowerCase: 'x', upperCase: 'x', alter: 'ź', alterUpper: 'Ź' },
+            { lowerCase: 'x', upperCase: 'X', alter: 'ź', alterUpper: 'Ź' },
             { lowerCase: 'c', upperCase: 'C', alter: 'ć', alterUpper: 'Ć' },
             { lowerCase: 'v', upperCase: 'V' },
             { lowerCase: 'b', upperCase: 'B' },

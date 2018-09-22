@@ -1,6 +1,6 @@
 {
   "name": "af-ng-virtual-keyboard",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "6.1.2",
     "@angular/router": "6.1.2",
     "core-js": "^2.4.1",
-    "ng2-virtual-keyboard": "^0.3.0",
+    "ng2-virtual-keyboard": "^0.4.0",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },

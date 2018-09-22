@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IQwertyKeysLine } from '../models/qwerty-keyboard.model';
 
 @Component({
     selector: 'vk-line',
     templateUrl: 'line.component.html',
-    styleUrls: ['line.component.scss']
+    styleUrls: ['line.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AfVkLineComponent {

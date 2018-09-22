@@ -1,5 +1,5 @@
 # ng2-virtual-keyboard
-###### current version v0.2.0
+###### current version v0.4.0
 
 Virtual Keyboard for Angular 6
 
@@ -39,6 +39,3 @@ ex. `<textarea vkTextArea>`
 - callback argument and $event object from vkEnter are type of Ng2VkEnterEvent and contain input value and event object
 with before / after strings and carret position
 - vkTextArea use enter action only with vkEnter, default action is new line
-
-## ToDo
-- Refactor for better performance - rxJs streams / OnPush

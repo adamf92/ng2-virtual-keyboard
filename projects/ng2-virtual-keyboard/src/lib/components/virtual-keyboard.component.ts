@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IQwertyKeyboard } from '../models/qwerty-keyboard.model';
 import { Ng2VkService, ThemeColors } from '../services/virtual-keyboard.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
     selector: 'vk-keyboard',
     templateUrl: 'virtual-keyboard.component.html',
     styleUrls: ['virtual-keyboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('vkToggle', [
             state('void', style({ transform: 'translateY(100%)' })),
@@ -22,15 +23,20 @@ export class AfVirtualKeyboardComponent {
         private _service: Ng2VkService
     ) {}
 
-    public getQwertyKeyboard(): IQwertyKeyboard {
+    public getQwertyKeyboard(): Observable<IQwertyKeyboard> {
         return this._service.getKeyboardModel();
     }
 
-    public getOpenState() {
+    /**
+     * Get Open State
+     *
+     * Get async open state of keyboard
+     */
+    public getOpenState(): Observable<boolean> {
         return this._service.getOpenState();
     }
 
-    public focus(event) {
+    public focus(): void {
         this._service.focus$.emit();
     }
 
