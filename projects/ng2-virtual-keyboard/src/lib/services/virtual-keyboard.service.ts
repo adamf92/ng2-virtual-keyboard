@@ -4,7 +4,9 @@ import { IQwertyKey, IQwertyKeyboard, QWERTY_KEYBOARD, Ng2VkCustomKeyboardModel,
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class Ng2VkService {
     /**
      * Color theme of keyboard
