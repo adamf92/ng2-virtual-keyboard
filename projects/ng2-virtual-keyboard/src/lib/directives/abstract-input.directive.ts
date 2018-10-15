@@ -13,6 +13,7 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
     public id: number;
 
     @Output('vkEnter') enter$: EventEmitter<Ng2VkEnterEvent> = new EventEmitter();
+    @Output('vkValueChanges') valueChanges$: EventEmitter<string> = new EventEmitter();
 
     constructor(
         protected _el: ElementRef<T>,
@@ -118,6 +119,8 @@ export abstract class AbstractAfVkInputDirective<T extends HTMLInputElement | HT
                     this._handleLetter(key, helper);
                     break;
             }
+
+            this.valueChanges$.emit(this._input.value);
         }
     }
 
