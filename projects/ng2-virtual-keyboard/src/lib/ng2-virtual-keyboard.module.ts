@@ -27,9 +27,6 @@ import { AfVkTextAreaDirective } from './directives/text-area.directive';
         AfVkToggleDirective,
         AfVkInputDirective,
         AfVkTextAreaDirective
-    ],
-    providers: [
-        Ng2VkService
     ]
 })
 export class Ng2VirtualKeyboardModule { }
